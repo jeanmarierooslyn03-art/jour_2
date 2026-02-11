@@ -20,15 +20,15 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  final String word = "LALIN"; // Mo kache
-  final String hint = "Li klere lannwit, li pa solèy"; // Devinette pou LALIN
+  final String word = "AYITI"; 
+  final String hint = "non premye repiblik nwa endepandan"; 
 
   int attempts = 5;
   String currentInput = "";
   late List<String> hiddenWord;
   bool gameOver = false;
 
-  String lastResult = ""; // Mesaj pou dènye jwèt la
+  String lastResult = ""; 
 
   @override
   void initState() {
@@ -59,12 +59,12 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       setState(() {
         attempts--;
-        lastResult = "OU PÈDI ❌";
+        lastResult = "OU PÈDI ";
 
         if (attempts == 0) {
           gameOver = true;
         } else {
-          // rekòmanse mo a pou itilizatè ka re-ekri
+         
           currentInput = "";
           hiddenWord = List.filled(word.length, '*');
         }
@@ -78,7 +78,7 @@ class _GameScreenState extends State<GameScreen> {
       currentInput = "";
       hiddenWord = List.filled(word.length, '*');
       gameOver = false;
-      // lastResult rete la pou montre si li te pèdi anvan
+  
     });
   }
 
@@ -86,8 +86,8 @@ class _GameScreenState extends State<GameScreen> {
   Widget buildKeyboard() {
     return Column(
       children: [
-        buildRow("QWERTYUIOPASD"),  // Liy 1
-        buildRow("FGHJKLZXCVBN"),   // Liy 2
+        buildRow("QWERTYUIOPASD"), 
+        buildRow("FGHJKLZXCVBN"),   
       ],
     );
   }
@@ -126,7 +126,7 @@ class _GameScreenState extends State<GameScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Mesaj dènye jwèt
+           
             if (lastResult.isNotEmpty)
               Text(
                 lastResult,
@@ -137,23 +137,23 @@ class _GameScreenState extends State<GameScreen> {
                 ),
               ),
             SizedBox(height: 10),
-            // Devinette
+            
             Text(
               hint,
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            // Asteriks pou mo kache
+            
             Text(
               hiddenWord.join(' '),
               style: TextStyle(fontSize: 32, letterSpacing: 2),
             ),
             SizedBox(height: 30),
-            // Klavye 2 liy
+            
             buildKeyboard(),
             SizedBox(height: 20),
-            // Bouton Rejwe
+            
             if (gameOver)
               ElevatedButton(
                 onPressed: restartGame,
